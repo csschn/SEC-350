@@ -1,0 +1,23 @@
+set interfaces ethernet eth2 address '172.16.150.2/24' 
+set interfaces ethernet eth2 description 'CONNOR-LAN' 
+set nat source rule 18 description 'NAT FROM DMZ to WAN' 
+set nat source rule 18 outbound-interface 'eth@' 
+set nat source rule 18 source address '172.16.50.0/29' 
+set nat source rule 18 translation address 'Masquerade' 
+set nat source rule 30 description 'NAT FROM MGMT TO WAN' 
+set nat source rule 30 outbound-interface 'eth@' 
+set nat source rule 30 source address '172.16.200.0/28' 
+set nat source rule 38 translation address 'Masquerade' 
+set nat source rule 118 outbound-interface 'ethe' 
+set nat source rule 118 source address '172.16.158.8/24' 
+set nat source rule 110 translation address 'Masquerade' 
+set protocols rip interface eth2
+set protocols rip network '172.16.58.8/29'
+set protocols static route 8.0.0.0/0 next-hop 18.8.17.2 
+set service dns forwarding allow-from '172.16.58.8/29' 
+set service dns forwarding allow-from '172.16.150.0/24' 
+set service dns forwarding listen-address '172.16.50.2' 
+set service dns forwarding listen-address '172.16.150.2' 
+set service dns forwarding systeм
+set service ssh listen-address '0.0.0.0' set system host-name 'fw1-connor'
+set system name-server '18.8.17.2'
